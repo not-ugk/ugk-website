@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.page {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: black;
+}
+
+.section {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+.menu {
+    background-color: red;
+    height: 80px;
+}
+
+.search {
+    background-color: red;
+}
+
+.results {
+    background-color: black;
+    align-items: flex-start;
+    min-height: 600px;
+    margin: 10px 10px;
+    color: rgb(148, 148, 148);
+}
+
+
+/* Mobile styles */
+@media only screen and (max-width: 400px) {
+    body {
+        
+        /* Red */
+    }
+}
+
+/* Tablet Styles */
+@media only screen and (min-width: 401px) and (max-width: 960px) {
+    body {
+        /* background-color: #F5CF8E; */
+        /* Yellow */
+    }
+}
+
+/* Desktop Styles */
+@media only screen and (min-width: 961px) {
+    body {
+        /* background-color: #B2D6FF; */
+        /* Blue */
+    }
+}
+
+
+table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    border: 3px solid gray;
+}
+
+th,
+td {
+  padding: 5px;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+        <script type="text/javascript" src="./search.js"></script>
+        <meta charset="UTF-8"/>
+        <title>UGK</title>
+        <link rel="stylesheet" href="style.css">
+        <meta name='viewport'
+      content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+    </head>
+    <body>
+        <div class="page">
+            <div class="section search">
+                <!-- should hopefully prevent page from refreshing: https://stackoverflow.com/a/19571253 -->
+                <!-- <form onsubmit="return false"> -->
+                    <!-- <input name="searchtype" id="artistsearch" type="radio" value="artist" checked>
+                    <label for="artist">artist</label>
+                    <input name="searchtype" id="songsearch" type="radio" value="song">
+                    <label for="song">song</label> -->
+                   <!-- <input type="search" id="search">
+                    <input type="submit" value="search">
+                </form> -->
+                <input type="search" id="search">
+                <button onclick="executesearch(document.getElementById('search').value)">search</button>
+                <button onclick="random()">surprise me!</button>
+            </div>
+            <div class="section results">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">artist</th>
+                            <th scope="col">song</th>
+                        </tr>
+                    </thead>
+                    <tbody id="results">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
