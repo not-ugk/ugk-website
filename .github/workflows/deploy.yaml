@@ -21,7 +21,7 @@ jobs:
     - run: pip install chevron
     - run: python csv-parser.py
     - run: mkdir public
-    - run: cp style.css ugk-homepage.html search.js public
+    - run: cp style.css index.html search.js public
     - name: Deploy to neocities
       uses: bcomnes/deploy-to-neocities@v1
       with:
