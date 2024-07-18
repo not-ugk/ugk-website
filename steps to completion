@@ -1,7 +1,7 @@
-- make new github project under ugk
-- 'generated' and 'source' folders
-- add myself as a user
-- add generated files
-- add github action for sending to neocities (based on my website)
-- figure out how to use github actions to generate new website based on that one file
-- add source files
+- fix formatting of some names (ampersands)
+- add manual fix for acdc for now
+- make return work on phones (replace button with form probably)
+- make search text box bigger on phones
+- make background of searchbox darker
+- make prettier
+- replace red with velvet
