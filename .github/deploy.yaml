@@ -1,0 +1,29 @@
+name: Build sit and deploy to neocities
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency: # prevent concurrent deploys doing strange things
+  group: deploy-to-neocities
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.10' 
+    - run: python csv-parser.py
+    - run: mkdir public
+    - run: cp style.css ugk-homepage.html search.js public
+    - name: Deploy to neocities
+      uses: bcomnes/deploy-to-neocities@v1
+      with:
+        api_token: ${{ secrets.NEOCITIES_API_TOKEN }}
+        cleanup: false
+        dist_dir: public
