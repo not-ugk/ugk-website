@@ -12,10 +12,17 @@
     <body>
         <div class="page">
             <div class="section search">
-                <form name="searchform" action="javascript:executesearch(document.getElementById('search').value)">
-                    <input name="search" type="search" id="search">
-                    <input name="submit" type="submit" value="search">
-                </form>
+                <!-- should hopefully prevent page from refreshing: https://stackoverflow.com/a/19571253 -->
+                <!-- <form onsubmit="return false"> -->
+                    <!-- <input name="searchtype" id="artistsearch" type="radio" value="artist" checked>
+                    <label for="artist">artist</label>
+                    <input name="searchtype" id="songsearch" type="radio" value="song">
+                    <label for="song">song</label> -->
+                   <!-- <input type="search" id="search">
+                    <input type="submit" value="search">
+                </form> -->
+                <input type="search" id="search">
+                <button onclick="executesearch(document.getElementById('search').value)">search</button>
                 <button onclick="random()">surprise me!</button>
             </div>
             <div class="section results">
