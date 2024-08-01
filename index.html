@@ -12,7 +12,7 @@
     <body>
         <div class="page">
             <div class="section search">
-                <form name="searchform" method="post" action="#" onsubmit="executesearch(); return false">
+                <form name="searchform" action="javascript:executesearch(document.getElementById('search').value)">
                     <input name="search" type="search" id="search">
                     <input name="submit" type="submit" value="search">
                 </form>
