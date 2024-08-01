@@ -1,0 +1,31 @@
+name: Build test and deploy to neocities
+
+on:
+  push:
+    branches:
+      - live-test
+
+concurrency: # prevent concurrent deploys doing strange things
+  group: deploy-to-neocities
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.10' 
+    - run: pip install chevron
+    - run: python csv-parser.py
+    - run: mkdir public
+    - run: mkdir public/test
+    - run: cp style.css index.html search.js public/test
+    - name: Deploy to neocities
+      uses: bcomnes/deploy-to-neocities@v1
+      with:
+        api_token: ${{ secrets.NEOCITIES_API_TOKEN }}
+        cleanup: false
+        dist_dir: public
