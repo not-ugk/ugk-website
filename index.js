@@ -1,5 +1,6 @@
-//temporary! remember to place with new data format!!!!
-const songs = [ {"artist": "4 Non Blondes", "title": "What's Up"} ]
+const songs = require('./data.json')
+
+const Fuse = require('fuse.js')
 
 const options = {
     keys: ['artist', 'title'],
@@ -9,7 +10,7 @@ const options = {
 
 const search = new Fuse(songs, options)
 
-function executesearch() {
+export function executesearch() {
     clearResults();
     const searchterm = document.getElementById("search").value
     console.log("Searching artists:" + searchterm)
@@ -18,7 +19,7 @@ function executesearch() {
     result.forEach(element => appendToResults(element.item))
 }
 
-function random() {
+export function random() {
     clearResults();
     console.log('producing random song')
     const song = getRandomSong();

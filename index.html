@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
-        <script type="text/javascript" src="./index.js"></script>
+        <script type="text/javascript" src="./dist/bundle.js"></script>
         <meta charset="UTF-8"/>
         <title>UGK</title>
         <link rel="stylesheet" href="style.css">
@@ -22,8 +21,8 @@
                     <input type="submit" value="search">
                 </form> -->
                 <input type="search" id="search">
-                <button onclick="executesearch(document.getElementById('search').value)">search</button>
-                <button onclick="random()">surprise me!</button>
+                <button onclick="UgkSearch.executesearch()">search</button>
+                <button onclick="UgkSearch.random()">surprise me!</button>
             </div>
             <div class="section results">
                 <table>
