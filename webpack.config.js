@@ -3,5 +3,8 @@ module.exports = {
     output: {
       filename: 'bundle.js',
       library: "UgkSearch"      
+    },
+    optimization: {
+        minimize: false
     }
   };
