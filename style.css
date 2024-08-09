@@ -1,7 +1,12 @@
+html {
+    color-scheme: dark
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scrollbar-color: #454a4d #202324;
 }
 
 .page {
@@ -12,7 +17,6 @@
 
 .section {
     width: 100%;
-    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,52 +24,30 @@
 }
 
 .menu {
-    background-color: red;
-    height: 80px;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: rgb(204, 0, 0);
 }
 
-.search {
-    background-color: red;
+#search {
+    width: 200px;
 }
-
 .results {
     background-color: black;
     align-items: flex-start;
     min-height: 600px;
     margin: 10px 10px;
-    color: rgb(148, 148, 148);
+    color: whitesmoke;
 }
-
-
-/* Mobile styles */
-@media only screen and (max-width: 400px) {
-    body {
-        
-        /* Red */
-    }
-}
-
-/* Tablet Styles */
-@media only screen and (min-width: 401px) and (max-width: 960px) {
-    body {
-        /* background-color: #F5CF8E; */
-        /* Yellow */
-    }
-}
-
-/* Desktop Styles */
-@media only screen and (min-width: 961px) {
-    body {
-        /* background-color: #B2D6FF; */
-        /* Blue */
-    }
-}
-
 
 table {
     table-layout: fixed;
     border-collapse: collapse;
-    border: 3px solid gray;
+    border: 3px solid rgb(51, 55, 57);
 }
 
 th,
