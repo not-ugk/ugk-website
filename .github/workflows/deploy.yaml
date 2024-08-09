@@ -13,15 +13,26 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-python@v5
       with:
         python-version: '3.10' 
-    - run: pip install chevron
-    - run: python csv-parser.py
-    - run: mkdir public
-    - run: cp style.css index.html search.js public
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 22.5.1
+    - name: install chevron
+      run: pip install chevron
+    - name: run csv parser
+      run: python csv-parser.py
+    - name: run webpack
+      run: npm run build
+    - run: mkdir -p public/dist
+    - name: copy files to folder
+      run: cp style.css index.html public
+    - name: copy bundle to correct folder
+      run: cp dist/bundle.js public/dist
     - name: Deploy to neocities
       uses: bcomnes/deploy-to-neocities@v1
       with:

@@ -1,14 +1,32 @@
-const songs = [ {{ songs }} ]
+const songs = require('./data.json')
+const Fuse = require('fuse.js')
 
-const options = {
+const fuseOptions = {
     keys: ['artist', 'title'],
     isCaseSensitive: false,
     threshold: 0.1
 }
 
-const search = new Fuse(songs, options)
+const search = new Fuse(songs, fuseOptions)
 
-function executesearch(searchterm) {
+const Maskito = require('@maskito/core')
+const maskedInput = new Maskito.Maskito(
+    document.getElementById("search"), {
+        preprocessors: [
+            ({elementState, data}, _) => {
+                executesearchwithterm(elementState.value);
+                return(elementState, data)
+            }
+        ]
+    }
+)
+
+export function executesearch() {
+    clearResults();
+    executesearchwithterm(document.getElementById("search").value)
+}
+
+function executesearchwithterm(searchterm) {
     clearResults();
     console.log("Searching artists:" + searchterm)
     const result = search.search(searchterm)
@@ -16,7 +34,7 @@ function executesearch(searchterm) {
     result.forEach(element => appendToResults(element.item))
 }
 
-function random() {
+export function random() {
     clearResults();
     console.log('producing random song')
     const song = getRandomSong();
