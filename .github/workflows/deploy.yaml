@@ -26,6 +26,7 @@ jobs:
       run: pip install chevron
     - name: run csv parser
       run: python csv-parser.py
+    - run: npm install
     - name: run webpack
       run: npm run build
     - run: mkdir -p public/dist
