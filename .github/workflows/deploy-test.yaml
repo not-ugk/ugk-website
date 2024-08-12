@@ -22,7 +22,7 @@ jobs:
       with:
         node-version: 22.5.1
     - name: install python requirements 
-      run: pip install -r requirements.txt
+      run: pip install -r data/requirements.txt
     - name: run csv parser
       run: python data/run.py dbexport.csv data-json.mustache data.json
     - run: npm install
