@@ -21,10 +21,10 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: 22.5.1
-    - name: install chevron
-      run: pip install chevron
+    - name: install python requirements 
+      run: pip install -r requirements.txt
     - name: run csv parser
-      run: python csv-parser.py
+      run: python data/run.py dbexport.csv data-json.mustache data.json
     - run: npm install
     - name: run webpack
       run: npm run build
