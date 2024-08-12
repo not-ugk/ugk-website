@@ -25,7 +25,7 @@ jobs:
     - name: install python requirements 
       run: pip install -r data/requirements.txt
     - name: run csv parser
-      run: python data/run.py dbexport.csv data-json.mustache data.json
+      run: python data/run.py dbexport.csv data/data-json.mustache data.json
     - run: npm install
     - name: run webpack
       run: npm run build
