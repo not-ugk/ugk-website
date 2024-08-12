@@ -4,7 +4,8 @@ const Fuse = require('fuse.js')
 const fuseOptions = {
     keys: ['artist', 'title'],
     isCaseSensitive: false,
-    threshold: 0.1
+    threshold: 0.1,
+    shouldSort: false
 }
 
 const search = new Fuse(songs, fuseOptions)
@@ -30,7 +31,6 @@ function executesearchwithterm(searchterm) {
     clearResults();
     console.log("Searching artists:" + searchterm)
     const result = search.search(searchterm)
-    console.log(result)
     result.forEach(element => appendToResults(element.item))
 }
 
