@@ -52,15 +52,19 @@ function clearResults() {
 function appendToResults(newItem) {
     console.log("appending item: " + newItem)
     const results = document.getElementById('results');
-    results.appendChild(newRow(newItem.artist, newItem.title));
+    results.appendChild(newRow(newItem.artist, newItem.title, newItem.id));
 }
 
-function newRow(artist, song) {
+function newRow(artist, song, id) {
     const tr = document.createElement('tr')
     const td1 = document.createElement('th')
     td1.appendChild(document.createTextNode(artist))
     const td2 = document.createElement('td')
-    td2.appendChild(document.createTextNode(song))
+    const a = document.createElement('a')
+    a.setAttribute('href', 'https://youtu.be/' + id)
+    a.setAttribute('target', '_blank')
+    a.appendChild(document.createTextNode(song))
+    td2.appendChild(a)
     tr.appendChild(td1)
     tr.appendChild(td2)
     return tr

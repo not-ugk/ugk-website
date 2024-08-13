@@ -15,7 +15,7 @@ def parse_args(args):
 def run(parsed_args: Namespace):
     with open(parsed_args.dbexport, newline='', encoding="utf-8") as csvfile:
         reader = csv.DictReader(csvfile, fieldnames=['artist', 'title', 'id', 'filepath'])
-        fieldsToKeep = ['artist', 'title']
+        fieldsToKeep = ['artist', 'title', 'id']
         data = [dict((k, v) for k, v in row.items() if k in fieldsToKeep) for row in reader]
 
     with open(parsed_args.template, 'r', encoding="utf-8") as f:
