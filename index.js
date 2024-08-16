@@ -5,7 +5,7 @@ const fuseOptions = {
     keys: ['artist', 'title'],
     isCaseSensitive: false,
     threshold: 0.2,
-    location: 100,
+    location: 22,
     distance: 1000,
     shouldSort: false
 }
