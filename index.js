@@ -4,7 +4,7 @@ const Fuse = require('fuse.js')
 const fuseOptions = {
     keys: ['artist', 'title'],
     isCaseSensitive: false,
-    threshold: 0.1,
+    threshold: 0.2,
     shouldSort: false
 }
 
@@ -23,7 +23,6 @@ const maskedInput = new Maskito.Maskito(
 )
 
 export function executesearch() {
-    clearResults();
     executesearchwithterm(document.getElementById("search").value)
 }
 
@@ -36,7 +35,6 @@ function executesearchwithterm(searchterm) {
 
 export function random() {
     clearResults();
-    console.log('producing random song')
     const song = getRandomSong();
     console.log('random song is ' + song);
     appendToResults(song);
@@ -50,7 +48,6 @@ function clearResults() {
 }
 
 function appendToResults(newItem) {
-    console.log("appending item: " + newItem)
     const results = document.getElementById('results');
     results.appendChild(newRow(newItem.artist, newItem.title, newItem.id));
 }
