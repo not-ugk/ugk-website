@@ -28,7 +28,7 @@ jobs:
       run: python data/run.py dbexport.csv data/data-json.mustache data.json
     - run: npm install
     - name: run webpack
-      run: npm run build
+      run: npm run build-prod
     - run: mkdir -p public/dist
     - name: copy files to folder
       run: cp style.css index.html public

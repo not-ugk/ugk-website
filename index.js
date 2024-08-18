@@ -10,6 +10,12 @@ const fuseOptions = {
     shouldSort: false
 }
 
+const resultsHead = document.getElementById("results-head")
+resultsHead.style.display === "none"
+const results = document.getElementById('results')
+fullSongList()
+
+
 const search = new Fuse(songs, fuseOptions)
 
 const Maskito = require('@maskito/core')
@@ -17,19 +23,30 @@ const maskedInput = new Maskito.Maskito(
     document.getElementById("search"), {
         preprocessors: [
             ({elementState, data}, _) => {
-                executesearchwithterm(elementState.value);
+                if (elementState.value === "") {
+                    fullSongList()
+                } else {
+                    executesearchwithterm(elementState.value);
+                }
                 return(elementState, data)
             }
         ]
     }
 )
 
+function fullSongList() {
+    clearResults();
+    resultsHead.style.display === "block"
+    songs.forEach(song => appendToResults(song))
+}
+ 
 export function executesearch() {
     executesearchwithterm(document.getElementById("search").value)
 }
 
 function executesearchwithterm(searchterm) {
     clearResults();
+    resultsHead.style.display === "block"
     console.log("Searching artists:" + searchterm)
     const result = search.search(searchterm)
     result.forEach(element => appendToResults(element.item))
@@ -37,6 +54,7 @@ function executesearchwithterm(searchterm) {
 
 export function random() {
     clearResults();
+    resultsHead.style.display === "block"
     const song = getRandomSong();
     console.log('random song is ' + song);
     appendToResults(song);
