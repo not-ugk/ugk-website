@@ -36,12 +36,18 @@ const maskedInput = new Maskito.Maskito(
 
 function fullSongList() {
     clearResults();
-    resultsHead.style.display === "block"
-    songs.forEach(song => appendToResults(song))
+    resultsHead.style.display === "block";
+    songs.forEach(song => appendToResults(song));
 }
  
 export function executesearch() {
-    executesearchwithterm(document.getElementById("search").value)
+    executesearchwithterm(document.getElementById("search").value);
+}
+
+export function artistSearch(artist) {
+    //need to set the search box to include artist since this is the once time where this wont already have happened (probably)
+    document.getElementById("search").value = artist;
+    executesearchwithterm(artist)
 }
 
 function executesearchwithterm(searchterm) {
@@ -74,14 +80,19 @@ function appendToResults(newItem) {
 
 function newRow(artist, song, id) {
     const tr = document.createElement('tr')
+
     const td1 = document.createElement('th')
-    td1.appendChild(document.createTextNode(artist))
+    const a1 = document.createElement('a')
+    a1.setAttribute('href', 'javascript:UgkSearch.artistSearch(\"' + artist + '\")')
+    a1.appendChild(document.createTextNode(artist))
+    td1.appendChild(a1)
+    
     const td2 = document.createElement('td')
-    const a = document.createElement('a')
-    a.setAttribute('href', 'https://youtu.be/' + id)
-    a.setAttribute('target', '_blank')
-    a.appendChild(document.createTextNode(song))
-    td2.appendChild(a)
+    const a2 = document.createElement('a')
+    a2.setAttribute('href', 'https://youtu.be/' + id)
+    a2.setAttribute('target', '_blank')
+    a2.appendChild(document.createTextNode(song))
+    td2.appendChild(a2)
     tr.appendChild(td1)
     tr.appendChild(td2)
     return tr
