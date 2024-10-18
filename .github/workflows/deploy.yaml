@@ -31,7 +31,7 @@ jobs:
       run: npm run build-prod
     - run: mkdir -p public/dist
     - name: copy files to folder
-      run: cp style.css index.html public
+      run: cp style.css index.html songbook.pdf public
     - name: copy bundle to correct folder
       run: cp dist/bundle.js public/dist
     - name: Deploy to neocities

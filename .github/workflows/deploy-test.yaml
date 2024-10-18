@@ -30,7 +30,7 @@ jobs:
       run: npm run build
     - run: mkdir -p public/test/dist
     - name: copy files to test folder
-      run: cp style.css index.html public/test
+      run: cp style.css index.html songbook.pdf public/test
     - name: copy bundle to correct folder
       run: cp dist/bundle.js public/test/dist
     - name: Deploy to neocities
