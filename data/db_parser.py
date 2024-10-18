@@ -13,7 +13,7 @@ def parse_args(args):
     return parser.parse_args(args)
 
 def run(parsed_args: Namespace):
-    with open(parsed_args.dbexport, newline='', encoding="utf-8") as csvfile:
+    with open(parsed_args.dbexport, newline='', encoding="cp1252") as csvfile:
         reader = csv.DictReader(csvfile, fieldnames=['artist', 'title', 'id', 'filepath'])
         fieldsToKeep = ['artist', 'title', 'id']
         data = [dict((k, v) for k, v in row.items() if k in fieldsToKeep) for row in reader]
@@ -34,4 +34,4 @@ def fix_id(id: str):
 
 def fix_encoding(text: str):
     #undo the encoding that chevron does, plus some other fixes.
-    return text.replace('&quot;', '"').replace('&amp;', '&').replace("AC?DC", "AC/DC")
+    return text.replace('&quot;', '"').replace('&amp;', '&').replace("AC?DC", "AC/DC").replace("\\u00eb", "ë").replace("\\u00e1", 'á')
