@@ -1,11 +1,6 @@
 import pygit2
 import datetime
 
-repo = pygit2.Repository("../")
-
-commit = repo[repo.head.target]
-diff = repo.diff(commit.parents[0].parents[0], commit, flags=pygit2.enums.DiffOption.MINIMAL)
-
 class SongUpdate:
 
     def __init__(self, state, date, artist, title):
@@ -68,4 +63,32 @@ def lineToSongUpdate(line: str, commit_time: int):
     firstChar = split[0][0] #should be + or -
     return SongUpdate(firstChar, str(datetime.datetime.fromtimestamp(commit_time)), split[0][1:], split[1])
 
-parseDiff(diff.patch, commit.commit_time)
+def printSongUpdates():
+    repo = pygit2.Repository("../")
+    mostRecent = repo[repo.head.target]
+    diving = True
+    commit = mostRecent
+    songs = []
+    try:
+        while(diving):
+            parent = commit.parents[0]
+            diff = repo.diff(parent, commit, flags=pygit2.enums.DiffOption.MINIMAL)
+            songs.append(parseDiff(diff.patch, commit.commit_time))
+            commit = parent
+    except IndexError:
+        diving = False
+
+    # print(f"{[for item in list]})
+
+    removals = {}
+    print("PRTINGING SONG UPDATES")
+    print("================================================================")
+    for updates in songs:
+        for update in list(updates.values()):
+            if (update.state == '-'):
+                removals[update.title + update.artist + update.date] = update
+            if (update.state == '+'):
+                if removals.get(update.title + update.artist + update.date) == None:
+                    print(update.date + " " + update.artist + " " + update.title)
+
+printSongUpdates()
