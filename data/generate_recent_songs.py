@@ -3,19 +3,17 @@ import datetime
 
 class SongUpdate:
 
-    def __init__(self, state, date, artist, title):
+    def __init__(self, state, date, song):
         self.state = state
         self.date = date
-        self.artist = artist
-        self.title = title
+        self.song = song
 
     def key(self): 
-        return self.state + self.date + self.artist + self.title
+        return self.state + self.date + self.song
 
     state: str
     date: str
-    artist: str
-    title: str
+    song: str
 
 def newSongsSort(ns: SongUpdate):
     return ns.date
@@ -59,9 +57,9 @@ def parseDiff(patch: str, commit_time: int):
     #     print(s.date + s.artist + s.title)
 
 def lineToSongUpdate(line: str, commit_time: int):
-    split = line.replace("\"", "").split(",")
+    split = line.replace("\"", "")
     firstChar = split[0][0] #should be + or -
-    return SongUpdate(firstChar, str(datetime.datetime.fromtimestamp(commit_time)), split[0][1:], split[1])
+    return SongUpdate(firstChar, str(datetime.datetime.fromtimestamp(commit_time)), split[1:])
 
 def printSongUpdates():
     repo = pygit2.Repository("../")
@@ -81,14 +79,14 @@ def printSongUpdates():
     # print(f"{[for item in list]})
 
     removals = {}
-    print("PRTINGING SONG UPDATES")
+    print("PRINTING SONG UPDATES")
     print("================================================================")
     for updates in songs:
         for update in list(updates.values()):
             if (update.state == '-'):
-                removals[update.title + update.artist + update.date] = update
+                removals[update.date + update.song] = update
             if (update.state == '+'):
-                if removals.get(update.title + update.artist + update.date) == None:
-                    print(update.date + " " + update.artist + " " + update.title)
+                if removals.get(update.date + update.song) == None:
+                    print(update.date + " " + update.song)
 
 printSongUpdates()
