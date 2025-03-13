@@ -29,13 +29,13 @@ jobs:
     - name: run webpack
       run: npm run build
     - run: mkdir -p public/test/dist
-    - run: mkdir -p public/test/dist/favicon
+    - run: mkdir -p public/test/favicon
     - name: copy files to test folder
       run: cp style.css index.html Songbook.pdf public/test
     - name: copy bundle to correct folder
       run: cp dist/bundle.js public/test/dist
     - name: copy favicons
-      run: cp favicon/* public/test/dist/favicon/
+      run: cp favicon/* public/test/favicon/
     - name: Deploy to neocities
       uses: bcomnes/deploy-to-neocities@v1
       with:
