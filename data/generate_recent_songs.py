@@ -58,9 +58,8 @@ def parse_diff(patch: str, commit_time: int):
     # songs.sort(key = newSongsSort)
     # for s in songs:
     #     print(s.date + s.artist + s.title)
-
 def write_song_updates():
-    repo = pygit2.Repository("../")
+    repo = pygit2.Repository("./")
     mostRecent = repo[repo.head.target]
     diving = True
     commit = mostRecent
