@@ -1,4 +1,4 @@
-from generate_recent_songs import parseDiff, SongUpdate
+from generate_recent_songs import parse_diff, SongUpdate
 patch = """
 diff --git a/data/requirements.txt b/data/requirements.txt
 index af0c4ae..f72571a 100644
@@ -54,7 +54,7 @@ index bb4d22b..0059fe7 100644
  """
 
 def test():
-    results = parseDiff(patch, 1741392817)
+    results = parse_diff(patch, 1741392817)
     assert list(results.keys()) == [
         "+2025-03-07 16:13:37KornAnother Brick in the Wall",
         "-2025-03-07 16:13:37Sonic AdventureEscape from the City",

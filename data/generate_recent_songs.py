@@ -3,10 +3,12 @@ import datetime
 
 class SongUpdate:
 
-    def __init__(self, state, date, song):
-        self.state = state
-        self.date = date
-        self.song = song
+    def __init__(self, line, commit_time):
+        split = line.replace("\"", "")
+        self.state = split[0][0] #should be + or -
+        self.date =  str(datetime.datetime.fromtimestamp(commit_time).date())
+        self.song = split[1:]
+        self.line = f"\"{self.date}\",{line[1:]}"
 
     def key(self): 
         return self.state + self.date + self.song
@@ -14,11 +16,12 @@ class SongUpdate:
     state: str
     date: str
     song: str
+    line: str
 
-def newSongsSort(ns: SongUpdate):
+def new_songs_sort(ns: SongUpdate):
     return ns.date
 
-def parseDiff(patch: str, commit_time: int):
+def parse_diff(patch: str, commit_time: int):
     print(patch)
     lines = iter(patch.splitlines())
     iterating = True
@@ -42,7 +45,7 @@ def parseDiff(patch: str, commit_time: int):
                 #print("processing!")
                 if (line.startswith('+') or line.startswith('-')):
                     # parse line into SongUpdate and add to dict
-                    update = lineToSongUpdate(line, commit_time)
+                    update = SongUpdate(line, commit_time)
                     newSongs[update.key()] = update
                 elif (line.find("diff --git") != -1): #this is assuming the line for dbexport diff doesn't show up more than once. It shouldn't
                     processing = False
@@ -56,12 +59,7 @@ def parseDiff(patch: str, commit_time: int):
     # for s in songs:
     #     print(s.date + s.artist + s.title)
 
-def lineToSongUpdate(line: str, commit_time: int):
-    split = line.replace("\"", "")
-    firstChar = split[0][0] #should be + or -
-    return SongUpdate(firstChar, str(datetime.datetime.fromtimestamp(commit_time)), split[1:])
-
-def printSongUpdates():
+def write_song_updates():
     repo = pygit2.Repository("../")
     mostRecent = repo[repo.head.target]
     diving = True
@@ -71,7 +69,7 @@ def printSongUpdates():
         while(diving):
             parent = commit.parents[0]
             diff = repo.diff(parent, commit, flags=pygit2.enums.DiffOption.MINIMAL)
-            songs.append(parseDiff(diff.patch, commit.commit_time))
+            songs.append(parse_diff(diff.patch, commit.commit_time))
             commit = parent
     except IndexError:
         diving = False
@@ -81,12 +79,13 @@ def printSongUpdates():
     removals = {}
     print("PRINTING SONG UPDATES")
     print("================================================================")
+    lines = []
     for updates in songs:
         for update in list(updates.values()):
             if (update.state == '-'):
                 removals[update.date + update.song] = update
             if (update.state == '+'):
                 if removals.get(update.date + update.song) == None:
-                    print(update.date + " " + update.song)
-
-printSongUpdates()
+                    print(update.line)
+                    lines.append(update.line)
+    return lines
