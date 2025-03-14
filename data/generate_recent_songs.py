@@ -8,7 +8,7 @@ class SongUpdate:
         self.date = date
         self.song = song
 
-    def key(self): 
+    def key(self):
         return self.state + self.date + self.song
 
     state: str
