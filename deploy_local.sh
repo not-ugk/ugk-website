@@ -4,6 +4,5 @@
 # have node installed
 
 pip install -r data/requirements.txt
-python data/run_db_parser.py dbexport.csv data/data-json.mustache data.json
-python data/run_recent_songs_parser.py data/data-json.mustache recentsongs.json
+python data/run.py dbexport.csv data/data-json.mustache ./
 npm run build

@@ -1,90 +1,93 @@
 import pygit2
 import datetime
+import csv
+import codecs
 
-class SongUpdate:
+class Song:
 
     def __init__(self, line, commit_time):
-        split = line.replace("\"", "")
-        self.state = split[0][0] #should be + or -
-        self.date =  str(datetime.datetime.fromtimestamp(commit_time).date())
-        self.song = split[1:]
-        self.line = f"\"{self.date}\",{line[1:]}"
+        print(f"creating song! {line}")
+        self.most_recent_state = line[0] #should be + or -
+        self.first_encountered =  datetime.datetime.fromtimestamp(commit_time)
+        #change this to just get id, I think the strange characters are causing the problem
+        reader = list(csv.reader([codecs.decode(line[1:]]))
+        print("reading")
+        try:
+            blah = reader[0]
+            self.id = reader[0][2]
+        except:
+            print("An exception occurred") 
+        print(f"{self.id}")
 
-    def key(self): 
-        return self.state + self.date + self.song
+    def update(self, commit_time):
+        self.first_encountered = datetime.datetime.fromtimestamp(commit_time)
+        return self
 
-    state: str
-    date: str
-    song: str
-    line: str
+    id: str
+    most_recent_state: str
+    first_encountered: datetime
 
-def new_songs_sort(ns: SongUpdate):
-    return ns.date
+def new_songs_sort(ns: Song):
+    return ns.first_encountered
 
-def parse_diff(patch: str, commit_time: int):
-    print(patch)
+def parse_diff(patch: str, commit_time: int, songs):
+    updated_songs = songs
+    #print(patch)
     lines = iter(patch.splitlines())
     iterating = True
     processing = False
-    newSongs = dict()
     while(iterating):
         try:
             line = next(lines)
-            #print("iterating " + line)
+            print("iterating " + line)
             if (processing == False):
-                #print("not processing!")
+                print("not processing!")
                 if (line == "diff --git a/dbexport.csv b/dbexport.csv"):
                 #skip next 3 lines, prepare for actual parsing
                     _ = next(lines)
                     _ = next(lines)
                     _ = next(lines)
-                    #print("processing true!")
+                    print("processing true!")
                     processing = True
                 #else loop
             else: #actual processing
-                #print("processing!")
+                print(f"processing! {line}")
+                print(f"line starts with + {str(line.startswith('+'))}")
+                print(f"line starts with - {str(line.startswith('-'))}")
                 if (line.startswith('+') or line.startswith('-')):
-                    # parse line into SongUpdate and add to dict
-                    update = SongUpdate(line, commit_time)
-                    newSongs[update.key()] = update
+                    # if first time seeing song, add to list. Otherwise update timestamp
+                    song = Song(line, commit_time)
+                    print(f"TYPE SONG: {str(type(songs))}")
+                    print(f"TYPE ID: {str(type(song.id))}")
+                    if song.id not in updated_songs:
+                        updated_songs[song.id] = song
+                    else:
+                        updated_songs[song.id] = updated_songs[song.id].update(commit_time)
                 elif (line.find("diff --git") != -1): #this is assuming the line for dbexport diff doesn't show up more than once. It shouldn't
                     processing = False
         except StopIteration:
             print("done iterating")
             iterating = False
     #sort dict by added date, turn into list, make into file
-    return newSongs
+    return updated_songs
     # songs = list(newSongs.values())
     # songs.sort(key = newSongsSort)
     # for s in songs:
     #     print(s.date + s.artist + s.title)
-def write_song_updates():
+def fetch_recently_added():
     repo = pygit2.Repository("./")
     mostRecent = repo[repo.head.target]
     diving = True
     commit = mostRecent
-    songs = []
+    songs = dict()
     try:
         while(diving):
             parent = commit.parents[0]
             diff = repo.diff(parent, commit, flags=pygit2.enums.DiffOption.MINIMAL)
-            songs.append(parse_diff(diff.patch, commit.commit_time))
+            #may not work as expected:
+            songs = parse_diff(diff.patch, commit.commit_time, songs)
             commit = parent
     except IndexError:
         diving = False
 
-    # print(f"{[for item in list]})
-
-    removals = {}
-    print("PRINTING SONG UPDATES")
-    print("================================================================")
-    lines = []
-    for updates in songs:
-        for update in list(updates.values()):
-            if (update.state == '-'):
-                removals[update.date + update.song] = update
-            if (update.state == '+'):
-                if removals.get(update.date + update.song) == None:
-                    print(update.line)
-                    lines.append(update.line)
-    return lines
+    return songs
