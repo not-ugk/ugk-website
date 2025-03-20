@@ -7,10 +7,12 @@ html {
     --velvet: #9C0C0C; /* penn red */
     --background: black;
     --text: #F9F8FA; /* seasalt */
-    --link: #3943B7; /* violet blue */
-    --link-visited: #C18FE0; /* lavender (floral) */
+    --link: #B89C00;
+    --link-visited: var(--link); 
     --link-active: #449DD1; /* celestial blue */
-    --link-hover: #48BF84; /* emerald */
+    --link-hover: var(--velvet); 
+    --button-color: var(--link);
+    --button-hover: wheat;
 }
 
 .new-rocker-regular {
@@ -23,13 +25,47 @@ html {
     font-family: "Trade Winds", system-ui;
     font-weight: 400;
     font-style: normal;
-  }
+}
+
+.fira-sans-bold {
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     scrollbar-color: #454a4d #202324;
+}
+
+a:link {
+    color: var(--link);
+}
+
+a:visited {
+    color: var(--link-visited)
+}
+
+a:active {
+    color: var(--link-active)
+}
+
+a:hover {
+    color: var(--link-hover)
+}
+
+a.top-link:link {
+    color: var(--background);
+}
+
+a.top-link:visited {
+    color: var(--background)
+}
+
+a.top-link:hover {
+    color: var(--button-hover)
 }
 
 .page {
@@ -67,7 +103,13 @@ html {
 
 .top-link {
     color: var(--text);
-    padding: 0px 5px 0px 5px;
+    padding: 1px 5px 1px 5px;
+    /* padding: 1px 6px; */
+    border: 1px outset buttonborder;
+    border-radius: 3px;
+    color: var(--background);
+    background-color: var(--button-color);
+    text-decoration: none;
 }
 
 .search-area {
@@ -96,6 +138,16 @@ table {
     border: 3px solid rgb(51, 55, 57);
 }
 
+.surprise-me {
+    padding: 5px;
+    background-color: var(--button-color);
+    color: var(--background);
+}
+
+.surprise-me:hover {
+    color: var(--button-hover)
+}
+
 th,
 td {
   padding: 5px;
@@ -103,20 +155,4 @@ td {
 
 th {
     text-align: left;
-}
-
-a:link {
-    color: var(--link);
-}
-
-a:visited {
-    color: var(--link-visited)
-}
-
-a:hover {
-    color: var(--link-hover)
-}
-
-a:active {
-    color: var(--link-active)
 }
