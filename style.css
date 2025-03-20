@@ -2,6 +2,29 @@ html {
     color-scheme: dark
 }
 
+:root {
+    /* color palette */
+    --velvet: #9C0C0C; /* penn red */
+    --background: black;
+    --text: #F9F8FA; /* seasalt */
+    --link: #3943B7; /* violet blue */
+    --link-visited: #C18FE0; /* lavender (floral) */
+    --link-active: #449DD1; /* celestial blue */
+    --link-hover: #48BF84; /* emerald */
+}
+
+.new-rocker-regular {
+    font-family: "New Rocker", system-ui;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+.trade-winds-regular {
+    font-family: "Trade Winds", system-ui;
+    font-weight: 400;
+    font-style: normal;
+  }
+
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +35,7 @@ html {
 .page {
     display: flex;
     flex-wrap: wrap;
-    background-color: black;
+    background-color: var(--background);
 }
 
 .section {
@@ -20,29 +43,51 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: black;
+    background-color: var(--background);
 }
 
 .menu {
     width: 100%;
-    height: 100px;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--velvet)
+}
+
+.links {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
-    background-color: rgb(204, 0, 0);
+    flex-shrink: 0;
+}
+
+.top-link {
+    color: var(--text);
+    padding: 0px 5px 0px 5px;
+}
+
+.search-area {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 #search {
     width: 200px;
     margin: 5px 5px;
 }
+
 .results {
-    background-color: black;
+    background-color: var(--background);
     align-items: flex-start;
     min-height: 600px;
     margin: 10px 10px;
-    color: whitesmoke;
+    color: var(--text)
 }
 
 table {
@@ -58,4 +103,20 @@ td {
 
 th {
     text-align: left;
+}
+
+a:link {
+    color: var(--link);
+}
+
+a:visited {
+    color: var(--link-visited)
+}
+
+a:hover {
+    color: var(--link-hover)
+}
+
+a:active {
+    color: var(--link-active)
 }

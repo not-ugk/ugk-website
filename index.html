@@ -12,13 +12,25 @@
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
         <meta name="apple-mobile-web-app-title" content="UGK" />
         <link rel="manifest" href="/favicon/site.webmanifest" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=New+Rocker&family=Trade+Winds&display=swap" rel="stylesheet">
+
     </head>
     <body>
         <div class="page">
             <div class="menu">
-                <h1 id="title">UGK SONGBOOK</h1>
-                <input type="search" id="search" placeholder="search me!!!!">
-                <button class="surprise-me" onclick="UgkSearch.random()">i'm feeling lucky</button>
+                <div class="links">
+                    <a class="top-link trade-winds-regular" href=".">CODE OF CONDUCT</a>
+                    <a class="top-link trade-winds-regular" href=".">COVID POLICY</a>
+                    <a class="top-link trade-winds-regular" href=".">PDF SONGBOOK</a>
+                    <a class="top-link trade-winds-regular" href=".">GUIDE TO ADDING SONGS</a>
+                </div>
+                <div class="search-area">
+                    <h1 id="title" class="new-rocker-regular">UGK SONGBOOK</h1>
+                    <input type="search" id="search" placeholder="search me!!!!">
+                    <button class="surprise-me" onclick="UgkSearch.random()">i'm feeling lucky</button>
+                </div>
             </div>
             <div class="section results">
                 <table>
