@@ -9,10 +9,11 @@ html {
     --text: #F9F8FA; /* seasalt */
     --link: #B89C00;
     --link-visited: var(--link); 
-    --link-active: #449DD1; /* celestial blue */
     --link-hover: var(--velvet); 
     --button-color: var(--link);
     --button-hover: wheat;
+    --button-active: #7A6800;
+    --button-active-text: #B8ABC4;
 }
 
 .new-rocker-regular {
@@ -21,12 +22,20 @@ html {
     font-style: normal;
   }
 
+/* unused */
 .trade-winds-regular {
     font-family: "Trade Winds", system-ui;
     font-weight: 400;
     font-style: normal;
 }
 
+.yu-gothic {
+    font-family: "yu-gothic-pr6n", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+
+/* unused */
 .fira-sans-bold {
     font-family: "Fira Sans", sans-serif;
     font-weight: 700;
@@ -68,6 +77,11 @@ a.top-link:hover {
     color: var(--button-hover)
 }
 
+a.top-link:active {
+    color: var(--button-active-text);
+    background-color: var(--button-active);
+}
+
 .page {
     display: flex;
     flex-wrap: wrap;
@@ -99,6 +113,7 @@ a.top-link:hover {
     flex-wrap: wrap;
     align-items: center;
     flex-shrink: 0;
+    column-gap: 15px;
 }
 
 .top-link {
@@ -142,6 +157,11 @@ table {
     padding: 5px;
     background-color: var(--button-color);
     color: var(--background);
+    padding: 1px 5px 1px 5px;
+    /* padding: 1px 6px; */
+    border: 1px outset buttonborder;
+    border-radius: 3px;
+    text-decoration: none;
 }
 
 .surprise-me:hover {
