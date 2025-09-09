@@ -4,16 +4,16 @@ html {
 
 :root {
     /* color palette */
-    --velvet: #9C0C0C; /* penn red */
+    --velvet: #9C0C0C; 
     --background: black;
-    --text: #F9F8FA; /* seasalt */
+    --text: #F9F8FA;
     --link: #B89C00;
     --link-visited: var(--link); 
     --link-hover: var(--velvet); 
-    --button-color: var(--link);
+    --button-bg: var(--link);
     --button-hover: wheat;
-    --button-active: #7A6800;
-    --button-active-text: #B8ABC4;
+    --button-active-bg: #7A6800;
+    --button-active: #B8ABC4;
 }
 
 .new-rocker-regular {
@@ -22,24 +22,17 @@ html {
     font-style: normal;
   }
 
-/* unused */
-.trade-winds-regular {
-    font-family: "Trade Winds", system-ui;
-    font-weight: 400;
-    font-style: normal;
+
+@font-face {
+    font-family: 'yu-gothic-medium';
+    src: url('YuGothic-Medium-01.woff') format('woff'), /* Modern Browsers */
+         url('YuGothic-Medium-01.ttf')  format('truetype') /* Safari, Android, iOS */
 }
 
 .yu-gothic {
-    font-family: "yu-gothic-pr6n", sans-serif;
+    font-family: 'yu-gothic-medium', "yu-gothic-pr6n", sans-serif;
     font-style: normal;
     font-weight: 400;
-}
-
-/* unused */
-.fira-sans-bold {
-    font-family: "Fira Sans", sans-serif;
-    font-weight: 700;
-    font-style: normal;
 }
 
 * {
@@ -63,23 +56,6 @@ a:active {
 
 a:hover {
     color: var(--link-hover)
-}
-
-a.top-link:link {
-    color: var(--background);
-}
-
-a.top-link:visited {
-    color: var(--background)
-}
-
-a.top-link:hover {
-    color: var(--button-hover)
-}
-
-a.top-link:active {
-    color: var(--button-active-text);
-    background-color: var(--button-active);
 }
 
 .page {
@@ -116,15 +92,30 @@ a.top-link:active {
     column-gap: 15px;
 }
 
-.top-link {
-    color: var(--text);
-    padding: 1px 5px 1px 5px;
-    /* padding: 1px 6px; */
+.button {
+    padding: 1px 4px 1px 4px;
     border: 1px outset buttonborder;
     border-radius: 3px;
     color: var(--background);
-    background-color: var(--button-color);
+    background-color: var(--button-bg);
     text-decoration: none;
+}
+
+a.button:link {
+    color: var(--background);
+}
+
+a.button:visited {
+    color: var(--background)
+}
+
+a.button:hover {
+    color: var(--button-hover)
+}
+
+a.button:active {
+    color: var(--button-active);
+    background-color: var(--button-active-bg);
 }
 
 .search-area {
@@ -153,24 +144,9 @@ table {
     border: 3px solid rgb(51, 55, 57);
 }
 
-.surprise-me {
-    padding: 5px;
-    background-color: var(--button-color);
-    color: var(--background);
-    padding: 1px 5px 1px 5px;
-    /* padding: 1px 6px; */
-    border: 1px outset buttonborder;
-    border-radius: 3px;
-    text-decoration: none;
-}
-
-.surprise-me:hover {
-    color: var(--button-hover)
-}
-
 th,
 td {
-  padding: 5px;
+  padding: 2px 4px;
 }
 
 th {
