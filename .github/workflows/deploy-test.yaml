@@ -31,7 +31,7 @@ jobs:
     - run: mkdir -p public/test/dist
     - run: mkdir -p public/test/favicon
     - name: copy files to test folder
-      run: cp style.css *.html YuGothic* Songbook.pdf public/test
+      run: cp *.css *.html YuGothic* Songbook.pdf public/test
     - name: copy bundle to correct folder
       run: cp dist/bundle.js public/test/dist
     - name: copy favicons
