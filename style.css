@@ -7,7 +7,7 @@ html {
     --velvet: #9C0C0C; 
     --background: black;
     --text: #F9F8FA;
-    --link: #B89C00;
+    --link: #9c8401;
     --link-visited: var(--link); 
     --link-hover: var(--velvet); 
     --button-bg: var(--link);
