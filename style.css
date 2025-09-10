@@ -20,6 +20,7 @@ html {
     font-family: "New Rocker", system-ui;
     font-weight: 400;
     font-style: normal;
+    text-shadow: 1px 1px 2px black;
   }
 
 
@@ -99,6 +100,7 @@ a:hover {
     color: var(--background);
     background-color: var(--button-bg);
     text-decoration: none;
+    box-shadow: 1px 1px 1px black;
 }
 
 a.button:link {
