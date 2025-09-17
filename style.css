@@ -5,7 +5,7 @@ html {
 :root {
     /* color palette */
     --velvet: #9C0C0C; 
-    --background: black;
+    --background: rgb(14, 14, 14);
     --text: #F9F8FA;
     --link: #9c8401;
     --link-visited: var(--link); 
@@ -101,6 +101,7 @@ a:hover {
     background-color: var(--button-bg);
     text-decoration: none;
     box-shadow: 1px 1px 1px black;
+    max-height: 85%;
 }
 
 a.button:link {
@@ -129,6 +130,7 @@ a.button:active {
 
 #search {
     width: 200px;
+    height: 30px;
     margin: 5px 5px;
 }
 

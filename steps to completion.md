@@ -5,6 +5,8 @@
 - make prettier
 - replace red with velvet
 
+- vertical spacing between buttons
+
 ### Catalogue
 
 - list all artists with songs lists in collapseable form
