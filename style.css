@@ -43,6 +43,26 @@ html {
     scrollbar-color: #454a4d #202324;
 }
 
+a.home {
+    text-decoration: none;
+}
+
+a.home:link {
+    color: var(--text);
+}
+
+a.home:visited {
+    color: var(--text)
+}
+
+a.home:active {
+    color: var(--link-active)
+}
+
+a.home:hover {
+    color: var(--button-hover)
+}
+
 a:link {
     color: var(--link);
 }
