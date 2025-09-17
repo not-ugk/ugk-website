@@ -4,9 +4,9 @@ html {
 
 :root {
     /* color palette */
-    --velvet: #9C0C0C; 
+    --velvet: #7d0a0a; 
     --background: rgb(14, 14, 14);
-    --text: #F9F8FA;
+    --text: #e8e6e3;
     --link: #9c8401;
     --link-visited: var(--link); 
     --link-hover: var(--velvet); 
@@ -22,7 +22,6 @@ html {
     font-style: normal;
     text-shadow: 1px 1px 2px black;
   }
-
 
 @font-face {
     font-family: 'yu-gothic-medium';
@@ -111,6 +110,7 @@ a:hover {
     align-items: center;
     flex-shrink: 0;
     gap: 5px 15px;
+    padding: 5px;
 }
 
 .button {
