@@ -32,7 +32,7 @@ jobs:
     - run: mkdir -p public/dist
     - run: mkdir -p public/favicon
     - name: copy files to folder
-      run: cp style.css index.html Songbook.pdf public
+      run: cp *.css *.html YuGothic* Songbook.pdf public
     - name: copy bundle to correct folder
       run: cp dist/bundle.js public/dist
     - name: copy favicons
