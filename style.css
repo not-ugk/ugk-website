@@ -81,7 +81,7 @@ a:hover {
     flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
-    background-color: var(--velvet)
+    background-color: var(--velvet);
 }
 
 .links {
@@ -90,7 +90,7 @@ a:hover {
     flex-wrap: wrap;
     align-items: center;
     flex-shrink: 0;
-    column-gap: 15px;
+    gap: 5px 15px;
 }
 
 .button {
@@ -101,7 +101,6 @@ a:hover {
     background-color: var(--button-bg);
     text-decoration: none;
     box-shadow: 1px 1px 1px black;
-    max-height: 85%;
 }
 
 a.button:link {
