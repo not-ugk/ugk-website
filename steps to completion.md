@@ -4,7 +4,8 @@
 - make search bar more obvious
 - make prettier
 - replace red with velvet
-- make artists left-oriented
+
+- vertical spacing between buttons
 
 ### Catalogue
 

@@ -16,7 +16,7 @@ class Song:
             blah = reader[0]
             self.id = reader[0][2]
         except:
-            print("An exception occurred") 
+            print("An exception occurred")
         print(f"{self.id}")
 
     def update(self, commit_time):
